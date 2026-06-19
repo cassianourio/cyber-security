@@ -42,7 +42,9 @@ DB_ERRORS = {
     "SQLite": [
         "sqlite3.operationalerror",
         "sqlite3.databaseerror",
-        "near \"\": syntax error"
+        "near \"",
+        "unrecognized token:",
+        "syntax error"
     ]
 }
 

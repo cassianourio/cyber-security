@@ -12,7 +12,7 @@ A tela de entrada onde você define a URL alvo para realizar a varredura contra 
 
 ### 2. Resultados da Varredura
 O painel exibe o mapeamento dos formulários encontrados, detalhes das vulnerabilidades de injeção identificadas (tipo, parâmetro, payload e erro do banco de dados) e o relatório de auditoria gerado pelo Gemini:
-![Resultados do Diagnóstico](static/screenshots/dashboard_results.png)
+![Resultados do Diagnóstico](static/screenshots/dashboard_real_results.png)
 
 ### 3. Visualização do Relatório (Nova Aba)
 Interface limpa que exibe o relatório gerado pela IA estruturado em Markdown de forma isolada:
