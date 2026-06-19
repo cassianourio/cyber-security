@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 .env
 reports/relatorio_*.md
+*.db
+test_vuln.db

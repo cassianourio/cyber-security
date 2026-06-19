@@ -48,20 +48,36 @@ GCP_LOCATION=us-central1
 GEMINI_MODEL=gemini-2.5-flash
 ```
 
-### Passo 4: Iniciar o Servidor Flask
-Por padrão, o servidor do Cenário 2 está configurado para rodar na porta **5001** para evitar conflitos com o Cenário 1:
+### Passo 4: Iniciar o Servidor Flask e o Laboratório de Testes
 
-1. **Inicie o servidor local:**
+Para realizar varreduras reais e seguras localmente, disponibilizamos um servidor deliberadamente vulnerável na pasta `server/`.
+
+1. **Inicie o Servidor Vulnerável de Testes (Porta 5002):**
+   Abra um novo terminal e execute:
+   ```bash
+   python server/vulnerable_server.py
+   ```
+   *Este servidor cria uma base SQLite em disco e simula rotas vulneráveis a SQL Injection via GET e POST.*
+
+2. **Inicie o Servidor do Scanner (Porta 5001):**
+   No terminal principal, execute:
    ```bash
    python app.py
    ```
-2. **Acesse no navegador:**
+
+3. **Acesse o Painel no navegador:**
    Abra [http://127.0.0.1:5001](http://127.0.0.1:5001).
-3. **Executar Varredura (Mock/Teste Rápido):**
-   Para testar a interface de forma imediata sem consumir a API do Gemini ou realizar requisições de rede reais, insira a URL `http://teste-sql.com` ou `http://teste-sql.com/products.php?id=1` e clique em **Iniciar Varredura**.
+
+4. **Execute o Teste Real:**
+   * Insira a URL do seu laboratório local: `http://127.0.0.1:5002/` (ou diretamente `http://127.0.0.1:5002/products.php?id=1`).
+   * Clique em **Iniciar Varredura**.
+   * O scanner detectará os formulários e vulnerabilidades reais, enviando os diagnósticos ao Gemini para gerar a auditoria com IA.
+
+5. **Executar Varredura Rápida (Mock/Bypass):**
+   Caso queira testar apenas a renderização da interface e layout sem consumir requisições reais ou créditos da API da IA, insira o domínio fictício `http://teste-sql.com` e execute o scan.
 
 ### Passo 5: Analisar Resultados e Relatórios
-1. **Dados na Tela**: O dashboard atualizará dinamicamente mostrando a listagem de formulários HTML mapeados e os parâmetros identificados como vulneráveis.
+1. **Dados na Tela**: O dashboard atualizará dinamicamente mostrando a listagem de formulários HTML mapeados e os parâmetros identificados como vulneráveis na base SQLite.
 2. **Nova Aba**: Clique em **Abrir Relatório (Nova Aba)** para abrir o documento gerado em uma janela separada.
 3. **Persistência**: Relatórios gerados são salvos na pasta `reports/` no formato `relatorio_<hostname>_<data_hora>.md`.
 
