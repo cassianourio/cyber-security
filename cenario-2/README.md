@@ -81,6 +81,21 @@ Para realizar varreduras reais e seguras localmente, disponibilizamos um servido
 2. **Nova Aba**: Clique em **Abrir Relatório (Nova Aba)** para abrir o documento gerado em uma janela separada.
 3. **Persistência**: Relatórios gerados são salvos na pasta `reports/` no formato `relatorio_<hostname>_<data_hora>.md`.
 
+### Passo 6: Como Observar as Vulnerabilidades Manualmente 
+Para entender a mecânica da injeção de SQL antes de rodar o scanner, os alunos podem testar as falhas manualmente no navegador contra o servidor de testes:
+
+1. **Testando a Rota GET (`/products.php`)**:
+   - Acesse o servidor local no navegador: `http://127.0.0.1:5002/products.php?id=1` (Isso retornará os dados do produto 1 normalmente).
+   - Agora, injete uma aspa simples para forçar uma quebra de sintaxe do banco de dados: `http://127.0.0.1:5002/products.php?id=1'`
+   - **Resultado Esperado:** A página retornará um erro bruto expondo a falha do SQLite: `Database operational error: near "1'": syntax error`. Isso comprova que a entrada fornecida pelo usuário está interagindo diretamente e sem tratamento com o interpretador SQL (caracterizando uma falha Error-Based SQLi).
+
+2. **Testando a Rota POST (`/login`)**:
+   - Acesse a interface principal do servidor de testes vulnerável em `http://127.0.0.1:5002/`.
+   - No formulário de login, no campo **Usuário**, digite o payload clássico de bypass de autenticação: `admin' --`
+   - O campo **Senha** pode ser preenchido com qualquer valor aleatório (ex: `123`).
+   - Clique em **Autenticar**.
+   - **Resultado Esperado:** O banco ignorará a verificação de senha (pois o `--` transforma o restante da consulta SQL em um comentário inofensivo) e o sistema autenticará o acesso com sucesso como usuário administrador (`admin`).
+
 ---
 
 ## Estrutura do Código e Arquitetura
