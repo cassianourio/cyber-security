@@ -91,6 +91,7 @@ O código segue um padrão modular limpo para fins didáticos, separando a lógi
 
 - **`app.py`**: Gerencia as rotas web no Flask (porta `5001`). Oferece as rotas para carregar a interface SPA (`/`), exibir o relatório em aba separada (`/report/<filename>`) e o endpoint de varredura (`/api/scan`). Possui um bypass dedicado para simular o comportamento de teste com `teste-sql.com`.
 - **`config.py`**: Carrega e expõe as variáveis de ambiente necessárias para a inicialização do Vertex AI.
+- **`server/vulnerable_server.py`**: Servidor de testes local vulnerável rodando de forma independente na porta `5002`. Oferece endpoints simulando falhas reais de SQL Injection via parâmetros GET e formulários POST integrados a um banco SQLite.
 - **`templates/index.html`**: Fornece o layout HTML5 semântico com os containers de dados e a integração do `marked.js` para renderizar Markdown diretamente na página.
 - **`templates/report.html`**: Template otimizado que exibe o relatório gerado em Markdown com um estilo de leitura focado.
 - **`static/style.css`**: Folha de estilos vanilla contendo a identidade visual com tema escuro e detalhes em neon Âmbar/Laranja, além de animações de transição e componentes responsivos.

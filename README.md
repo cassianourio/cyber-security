@@ -18,6 +18,7 @@ Uma aplicação web completa (dashboard SPA com Flask, HTML5, Vanilla CSS e JS, 
 - Rastreamento e parsing de formulários HTML (POST) com simulação de preenchimento e envio de cargas úteis SQLi.
 - Detecção e classificação baseadas em assinaturas de erros de bancos de dados (MySQL, PostgreSQL, Oracle, SQLite, MSSQL).
 - Consolidação e envio para o **Google Cloud Vertex AI (Gemini)** para geração de um parecer técnico estruturado e instruções de remediação seguras (Prepared Statements/PDO).
+- Laboratório local integrado (servidor Flask/SQLite vulnerável rodando na porta `5002`) permitindo simular testes e invasões reais controladas de forma totalmente segura.
 
 ---
 
